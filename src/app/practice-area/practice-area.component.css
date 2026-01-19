@@ -1,4 +1,4 @@
-/* Services Page Custom Styles */
+/* Practice Area Page Custom Styles */
 
 /* Hero section animations */
 @keyframes fadeInDown {
@@ -34,17 +34,6 @@
   }
 }
 
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 /* Hero content animation */
 .hero-title {
   animation: fadeInDown 1s ease-out;
@@ -54,37 +43,37 @@
   animation: fadeInUp 1s ease-out 0.3s both;
 }
 
-/* Service cards staggered animation */
-.service-card:nth-child(1) {
+/* Practice area cards staggered animation */
+.practice-card:nth-child(1) {
   animation: scaleIn 0.8s ease-out 0.1s both;
 }
 
-.service-card:nth-child(2) {
+.practice-card:nth-child(2) {
   animation: scaleIn 0.8s ease-out 0.2s both;
 }
 
-.service-card:nth-child(3) {
+.practice-card:nth-child(3) {
   animation: scaleIn 0.8s ease-out 0.3s both;
 }
 
-.service-card:nth-child(4) {
+.practice-card:nth-child(4) {
   animation: scaleIn 0.8s ease-out 0.4s both;
 }
 
-.service-card:nth-child(5) {
+.practice-card:nth-child(5) {
   animation: scaleIn 0.8s ease-out 0.5s both;
 }
 
-.service-card:nth-child(6) {
+.practice-card:nth-child(6) {
   animation: scaleIn 0.8s ease-out 0.6s both;
 }
 
 /* Card hover effects */
-.service-card {
+.practice-card {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.service-card:hover {
+.practice-card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
@@ -94,7 +83,7 @@
   transition: all 0.3s ease;
 }
 
-.service-card:hover .icon-container {
+.practice-card:hover .icon-container {
   transform: scale(1.1) rotate(5deg);
 }
 
@@ -111,43 +100,31 @@
   left: 0;
   width: 100%;
   height: 4px;
+  background: linear-gradient(90deg, #f59e0b, #d97706);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s ease;
 }
 
-.service-card:hover .gradient-underline::after {
+.practice-card:hover .gradient-underline::after {
   transform: scaleX(1);
 }
 
-/* Process steps animation */
-.process-step:nth-child(1) {
-  animation: slideInLeft 1s ease-out 0.1s both;
-}
-
-.process-step:nth-child(2) {
-  animation: slideInLeft 1s ease-out 0.2s both;
-}
-
-.process-step:nth-child(3) {
-  animation: slideInLeft 1s ease-out 0.3s both;
-}
-
-.process-step:nth-child(4) {
-  animation: slideInLeft 1s ease-out 0.4s both;
-}
-
-/* Service commitment cards animation */
-.commitment-card:nth-child(1) {
+/* Why choose us section animations */
+.why-choose-card:nth-child(1) {
   animation: fadeInUp 1s ease-out 0.1s both;
 }
 
-.commitment-card:nth-child(2) {
+.why-choose-card:nth-child(2) {
   animation: fadeInUp 1s ease-out 0.2s both;
 }
 
-.commitment-card:nth-child(3) {
+.why-choose-card:nth-child(3) {
   animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.why-choose-card:nth-child(4) {
+  animation: fadeInUp 1s ease-out 0.4s both;
 }
 
 /* Stats animation */
@@ -187,27 +164,6 @@
   left: 100%;
 }
 
-/* Process step connector line */
-.process-connector {
-  position: relative;
-}
-
-.process-connector::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: -50%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, #f59e0b, transparent);
-  animation: drawLine 1s ease-out 0.5s both;
-}
-
-@keyframes drawLine {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
 /* Decorative elements animation */
 .decorative-element {
   animation: float 3s ease-in-out infinite;
@@ -238,43 +194,13 @@
   background-clip: text;
 }
 
-/* Enhanced card shadow on hover */
-.enhanced-shadow {
-  transition: box-shadow 0.3s ease;
-}
-
-.enhanced-shadow:hover {
-  box-shadow: 0 20px 40px -12px rgba(245, 158, 11, 0.3);
-}
-
-/* Service icon pulse animation */
-.service-icon {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
-  }
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .service-card:nth-child(n) {
+  .practice-card:nth-child(n) {
     animation: fadeInUp 0.6s ease-out both;
   }
   
-  .process-step:nth-child(n) {
-    animation: fadeInUp 0.6s ease-out both;
-  }
-  
-  .commitment-card:nth-child(n) {
+  .why-choose-card:nth-child(n) {
     animation: fadeInUp 0.6s ease-out both;
   }
 }
@@ -303,28 +229,11 @@
   to { width: 80px; }
 }
 
-/* Emergency service highlight */
-.emergency-service {
-  position: relative;
+/* Enhanced card shadow on hover */
+.enhanced-shadow {
+  transition: box-shadow 0.3s ease;
 }
 
-.emergency-service::before {
-  content: '🚨';
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  font-size: 1.2rem;
-  animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
+.enhanced-shadow:hover {
+  box-shadow: 0 20px 40px -12px rgba(245, 158, 11, 0.3);
 }

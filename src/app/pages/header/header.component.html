@@ -1,1 +1,140 @@
-<p>header works!</p>
+<!-- Modern Responsive Navigation Bar -->
+<nav class="bg-black shadow-lg fixed w-full z-50 top-0">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      
+      <!-- Logo Section -->
+      <div class="flex-shrink-0 flex items-center">
+        <div class="flex items-center space-x-2">
+          <!-- Dummy Logo Icon -->
+          <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-black font-bold" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+              <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 102 0V3a2 2 0 012 2v6.5A1.5 1.5 0 0011.5 13H10a1 1 0 100 2h1.5a3.5 3.5 0 003.5-3.5V5a4 4 0 10-8 0v6.5A1.5 1.5 0 005.5 13H4a1 1 0 100 2h1.5a3.5 3.5 0 003.5-3.5V5z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <!-- Logo Text -->
+          <div class="text-white font-bold text-xl">
+            <span class="text-amber-400">Legal</span>Advocate
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-2">
+          <a routerLink="home"
+            routerLinkActive="router-link-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+             class="text-gray-300 hover:text-amber-400 px-3 py-2 text-sm font-medium transition-colors duration-300 relative group"
+             (click)="closeMenu()">
+            Home
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          
+          <a routerLink="about-us" 
+             routerLinkActive="router-link-active"
+             class="text-gray-300 hover:text-amber-400 px-3 py-2 text-sm font-medium transition-colors duration-300 relative group"
+             (click)="closeMenu()">
+            About
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          
+          <a routerLink="practice-area" 
+             routerLinkActive="router-link-active"
+             class="text-gray-300 hover:text-amber-400 px-3 py-2 text-sm font-medium transition-colors duration-300 relative group"
+             (click)="closeMenu()">
+            Practice Area
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          
+          <a routerLink="services" 
+             routerLinkActive="router-link-active"
+             class="text-gray-300 hover:text-amber-400 px-3 py-2 text-sm font-medium transition-colors duration-300 relative group"
+             (click)="closeMenu()">
+            Services
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          
+          <a routerLink="clients" 
+             routerLinkActive="router-link-active"
+             class="text-gray-300 hover:text-amber-400 px-3 py-2 text-sm font-medium transition-colors duration-300 relative group"
+             (click)="closeMenu()">
+            Clients
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          
+          <a routerLink="contact-us" 
+             routerLinkActive="router-link-active"
+             class="text-gray-300 hover:text-amber-400 px-3 py-2 text-sm font-medium transition-colors duration-300 relative group"
+             (click)="closeMenu()">
+            Contact Us
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="md:hidden">
+        <button (click)="toggleMenu()" 
+                class="text-gray-300 hover:text-white focus:outline-none focus:text-white transition-colors duration-300">
+          <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <path [class.hidden]="isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            <path [class.hidden]="!isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div class="md:hidden" [class.hidden]="!isMenuOpen">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-900 border-t border-gray-700 animate-fadeIn">
+      <a routerLink="home" 
+         routerLinkActive="text-amber-400 bg-gray-800"
+         [routerLinkActiveOptions]="{ exact: true }"
+         class="text-white hover:text-amber-400 hover:bg-gray-800 block px-3 py-2 text-base font-medium transition-all duration-300 rounded-md"
+         (click)="closeMenu()">
+        Home
+      </a>
+      
+      <a routerLink="about-us" 
+         routerLinkActive="text-amber-400 bg-gray-800"
+         class="text-gray-300 hover:text-amber-400 hover:bg-gray-800 block px-3 py-2 text-base font-medium transition-all duration-300 rounded-md"
+         (click)="closeMenu()">
+        About
+      </a>
+      
+      <a routerLink="practice-area" 
+         routerLinkActive="text-amber-400 bg-gray-800"
+         class="text-gray-300 hover:text-amber-400 hover:bg-gray-800 block px-3 py-2 text-base font-medium transition-all duration-300 rounded-md"
+         (click)="closeMenu()">
+        Practice Area
+      </a>
+      
+      <a routerLink="services" 
+         routerLinkActive="text-amber-400 bg-gray-800"
+         class="text-gray-300 hover:text-amber-400 hover:bg-gray-800 block px-3 py-2 text-base font-medium transition-all duration-300 rounded-md"
+         (click)="closeMenu()">
+        Services
+      </a>
+      
+      <a routerLink="clients" 
+         routerLinkActive="text-amber-400 bg-gray-800"
+         class="text-gray-300 hover:text-amber-400 hover:bg-gray-800 block px-3 py-2 text-base font-medium transition-all duration-300 rounded-md"
+         (click)="closeMenu()">
+        Clients
+      </a>
+      
+      <a routerLink="contact-us" 
+         routerLinkActive="text-amber-400 bg-gray-800"
+         class="text-gray-300 hover:text-amber-400 hover:bg-gray-800 block px-3 py-2 text-base font-medium transition-all duration-300 rounded-md"
+         (click)="closeMenu()">
+        Contact Us
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Spacer to prevent content from going under fixed navbar -->
+<div class="h-16"></div>

@@ -1,0 +1,155 @@
+/* Hero Section Enhancements */
+.hero-gradient {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2d2d2d 100%);
+}
+
+/* Smooth scrolling for the entire document */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero content animation */
+.hero-content {
+  animation: slideInLeft 1s ease-out;
+}
+
+.hero-image {
+  animation: slideInRight 1s ease-out 0.3s both;
+}
+
+/* Stats counter animation */
+.stat-item {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Practice area cards hover effects */
+.practice-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.practice-card:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Button hover effects */
+.btn-primary {
+  background: linear-gradient(45deg, #f59e0b, #d97706);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #d97706, #b45309);
+  box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-content {
+    text-align: center;
+  }
+  
+  .practice-card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Professional image placeholder styling */
+.professional-image-placeholder {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.professional-image-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(245, 158, 11, 0.1) 50%, 
+    transparent 70%
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Typography enhancements */
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+  border-radius: 2px;
+}
+
+/* Card animations on scroll */
+.practice-areas-grid .practice-card {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.practice-areas-grid .practice-card:nth-child(1) { animation-delay: 0.1s; }
+.practice-areas-grid .practice-card:nth-child(2) { animation-delay: 0.2s; }
+.practice-areas-grid .practice-card:nth-child(3) { animation-delay: 0.3s; }
+.practice-areas-grid .practice-card:nth-child(4) { animation-delay: 0.4s; }
+.practice-areas-grid .practice-card:nth-child(5) { animation-delay: 0.5s; }
+.practice-areas-grid .practice-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Professional gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

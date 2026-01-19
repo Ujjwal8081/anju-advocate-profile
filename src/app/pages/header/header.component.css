@@ -1,0 +1,4 @@
+/* Mobile navigation active state */
+.router-link-active {
+  color: #f59e0b !important;
+}

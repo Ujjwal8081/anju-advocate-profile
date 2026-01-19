@@ -1,0 +1,176 @@
+/* About Page Custom Styles */
+
+/* Smooth animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Hero section animations */
+.hero-content {
+  animation: slideInLeft 1s ease-out;
+}
+
+.hero-image {
+  animation: slideInRight 1s ease-out 0.3s both;
+}
+
+/* Stagger animation for cards */
+.expertise-card:nth-child(1) {
+  animation: fadeInUp 0.8s ease-out 0.1s both;
+}
+
+.expertise-card:nth-child(2) {
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.expertise-card:nth-child(3) {
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.expertise-card:nth-child(4) {
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+/* Why choose us cards animation */
+.why-choose-card:nth-child(1) {
+  animation: fadeInUp 1s ease-out 0.1s both;
+}
+
+.why-choose-card:nth-child(2) {
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.why-choose-card:nth-child(3) {
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.why-choose-card:nth-child(4) {
+  animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+/* Professional gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced hover effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Professional image styling */
+.professional-portrait {
+  position: relative;
+  overflow: hidden;
+}
+
+.professional-portrait::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(245, 158, 11, 0.1) 50%, 
+    transparent 70%
+  );
+  animation: shimmer 3s infinite;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-content,
+  .hero-image {
+    animation: fadeInUp 0.8s ease-out;
+  }
+}
+
+/* Section title underline animation */
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+  border-radius: 2px;
+  animation: expandWidth 0.8s ease-out 0.5s both;
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 60px; }
+}
+
+/* CTA button enhancements */
+.cta-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
