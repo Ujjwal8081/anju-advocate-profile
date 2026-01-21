@@ -3,7 +3,7 @@
 
 [build]
   command = "npm run build"
-  publish = "dist/advocate-portfolio/browser"
+  publish = "dist/advocate-portfolio"
   environment = { NODE_VERSION = "18" }
 
 # Redirect all requests to index.html for Angular SPA routing
