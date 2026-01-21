@@ -1,0 +1,47 @@
+# Robots.txt for Advocate Anju Singh Portfolio
+# This file helps search engines crawl and index your website
+
+# Allow all user agents by default
+User-agent: *
+Allow: /
+
+# Disallow crawling of admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /test/
+
+# Disallow crawling of common unwanted paths
+Disallow: /.git/
+Disallow: /.angular/
+Disallow: /node_modules/
+
+# Specify sitemap location
+Sitemap: https://advanjusingh.com/sitemap.xml
+
+# Crawl delay (in seconds) - optional, helps reduce server load
+# Crawl-delay: 1
+
+# Request rate (pages per second) - optional
+# Request-rate: 1/10s
+
+# Allow Google crawlers for additional indexing
+User-agent: Googlebot
+Allow: /
+
+# Allow other popular bots
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow bad bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
