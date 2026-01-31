@@ -13,6 +13,7 @@ export class ContactUsComponent implements OnInit {
   showSuccessMessage = false;
   showErrorMessage = false;
   errorMessage = '';
+  showPrivacyModal = false;
 
   constructor(
     private fb: FormBuilder,
@@ -177,5 +178,23 @@ export class ContactUsComponent implements OnInit {
   }
   get consent() {
     return this.contactForm.get('consent');
+  }
+
+  /**
+   * Open privacy policy modal
+   */
+  openPrivacyPolicy(): void {
+    this.showPrivacyModal = true;
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+  }
+
+  /**
+   * Close privacy policy modal
+   */
+  closePrivacyPolicy(): void {
+    this.showPrivacyModal = false;
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
   }
 }
