@@ -9,46 +9,67 @@ export class ClientsComponent {
 
   clientCategories = [
     {
-      title: 'Individual Clients',
-      description: 'Personal legal matters including consumer disputes, employment issues, and individual rights protection.',
-      icon: 'fas fa-user',
-      bgColor: 'bg-blue-500',
-      clientCount: 200
-    },
-    {
-      title: 'Corporate & Business',
-      description: 'Comprehensive business law services including contracts, compliance, and corporate governance.',
-      icon: 'fas fa-building',
-      bgColor: 'bg-purple-500',
-      clientCount: 150
-    },
-    {
-      title: 'Startups & Entrepreneurs',
-      description: 'Legal guidance for new businesses, intellectual property protection, and startup compliance.',
-      icon: 'fas fa-rocket',
-      bgColor: 'bg-green-500',
-      clientCount: 80
-    },
-    {
-      title: 'Families & Matrimonial',
-      description: 'Family law matters including divorce, child custody, property settlements, and matrimonial disputes.',
-      icon: 'fas fa-heart',
-      bgColor: 'bg-pink-500',
+      title: 'Criminal Law Clients',
+      description: 'Individuals requiring expert defense in criminal matters, bail applications, trial proceedings, and criminal appeals.',
+      icon: 'fas fa-gavel',
+      bgColor: 'bg-red-500',
       clientCount: 120
     },
     {
-      title: 'Property Owners',
-      description: 'Real estate law, property disputes, documentation, and land acquisition matters.',
-      icon: 'fas fa-home',
-      bgColor: 'bg-orange-500',
+      title: 'Civil Litigation Clients',
+      description: 'Parties involved in civil disputes, contract breaches, property conflicts, and civil recovery matters.',
+      icon: 'fas fa-balance-scale',
+      bgColor: 'bg-blue-500',
       clientCount: 100
     },
     {
-      title: 'NGOs & Institutions',
-      description: 'Legal support for non-profit organizations, educational institutions, and charitable trusts.',
-      icon: 'fas fa-hands-helping',
+      title: 'Family & Matrimonial',
+      description: 'Families requiring support in divorce, child custody, maintenance disputes, and matrimonial matters.',
+      icon: 'fas fa-heart',
+      bgColor: 'bg-pink-500',
+      clientCount: 110
+    },
+    {
+      title: 'Corporate & Business',
+      description: 'Businesses requiring comprehensive legal services in compliance, contracts, and corporate governance.',
+      icon: 'fas fa-building',
+      bgColor: 'bg-green-500',
+      clientCount: 95
+    },
+    {
+      title: 'Property Owners & Buyers',
+      description: 'Real estate clients requiring property transactions, title verification, and real estate dispute resolution.',
+      icon: 'fas fa-home',
+      bgColor: 'bg-orange-500',
+      clientCount: 85
+    },
+    {
+      title: 'Legal Consultation Seekers',
+      description: 'Clients seeking expert legal advice, case assessment, and strategic planning for their matters.',
+      icon: 'fas fa-headset',
+      bgColor: 'bg-indigo-500',
+      clientCount: 130
+    },
+    {
+      title: 'Consumer Dispute Clients',
+      description: 'Consumers requiring representation in CAT for defective products, unfair practices, and compensation claims.',
+      icon: 'fas fa-shopping-cart',
+      bgColor: 'bg-cyan-500',
+      clientCount: 75
+    },
+    {
+      title: 'Government Employees (SAT)',
+      description: 'State government employees with administrative disputes, salary issues, and employment grievances.',
+      icon: 'fas fa-id-badge',
+      bgColor: 'bg-rose-500',
+      clientCount: 60
+    },
+    {
+      title: 'Federal Administrative Clients',
+      description: 'Central government employees and organizations with administrative matters before CAT tribunal.',
+      icon: 'fas fa-flag',
       bgColor: 'bg-teal-500',
-      clientCount: 45
+      clientCount: 50
     }
   ];
 
