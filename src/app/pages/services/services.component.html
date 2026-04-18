@@ -14,18 +14,19 @@
       </div>
       
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-        Our <span class="text-amber-400">Legal Services</span>
+        <span class="text-amber-400">Legal Services in Lucknow</span>
+        <br>
+        for Criminal, Civil, Family, Property and Corporate Matters
       </h1>
       
       <div class="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto mb-6"></div>
       
       <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-        Professional Legal Solutions Tailored to Your Needs
+        Professional legal support tailored to the nature and urgency of your matter
       </p>
       
       <p class="text-gray-400 text-lg max-w-4xl mx-auto leading-relaxed">
-        From consultation to representation, we provide comprehensive legal services designed to protect your interests 
-        and achieve optimal outcomes in every legal matter.
+        Explore the principal practice areas handled by Advocate Anju Singh, with dedicated pages for clients seeking representation and legal advice in Lucknow.
       </p>
     </div>
   </div>
@@ -34,6 +35,26 @@
   <div class="absolute top-20 left-10 w-16 h-16 bg-amber-400/10 rounded-full animate-pulse"></div>
   <div class="absolute bottom-20 right-10 w-20 h-20 bg-amber-400/10 rounded-full animate-pulse"></div>
   <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-amber-400/5 rounded-full animate-pulse"></div>
+</section>
+
+<section class="service-pages-section">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="service-pages-shell">
+      <div class="service-pages-copy">
+        <p class="service-pages-label">Focused Practice Pages</p>
+        <h2 class="service-pages-title">Choose the practice area that best matches your legal requirement</h2>
+        <p class="service-pages-text">
+          Each service page provides a clearer overview of the matters handled, the type of support available and how to proceed with a consultation. This makes it easier for prospective clients to identify the right practice area without sorting through generic content.
+        </p>
+      </div>
+      <div class="service-pages-grid">
+        <a *ngFor="let page of landingPages" [routerLink]="page.path" class="service-pages-card">
+          <h3>{{ page.title }}</h3>
+          <p>{{ page.description }}</p>
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Services Listing Section -->

@@ -153,3 +153,88 @@ html {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+.practice-focus-section {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbf8 100%);
+  border-bottom: 1px solid #ece7dc;
+  padding: 4.5rem 0;
+}
+
+.practice-focus-shell {
+  background: #ffffff;
+  border: 1px solid rgba(196, 154, 79, 0.18);
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.06);
+  padding: 2.5rem;
+}
+
+.practice-focus-copy {
+  max-width: 860px;
+}
+
+.practice-focus-label {
+  color: #b7791f;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  margin-bottom: 0.85rem;
+  text-transform: uppercase;
+}
+
+.practice-focus-title {
+  color: #111827;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.practice-focus-text {
+  color: #4b5563;
+  font-size: 1.08rem;
+  line-height: 1.9;
+  margin-bottom: 1.75rem;
+  max-width: 900px;
+}
+
+.practice-focus-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.practice-focus-pill {
+  background: #fff8e8;
+  border: 1px solid rgba(196, 154, 79, 0.18);
+  border-radius: 999px;
+  color: #9a5b11;
+  display: inline-flex;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.9rem 1.2rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.practice-focus-pill:hover {
+  background: #fdf1d3;
+  border-color: rgba(180, 83, 9, 0.24);
+  color: #7c4510;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .practice-focus-section {
+    padding: 3.5rem 0;
+  }
+
+  .practice-focus-shell {
+    border-radius: 22px;
+    padding: 1.75rem;
+  }
+
+  .practice-focus-pill {
+    justify-content: center;
+    width: 100%;
+  }
+}

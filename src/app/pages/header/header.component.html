@@ -14,16 +14,16 @@
             </svg>
           </div>
           <!-- Logo Text -->
-          <div class="text-white font-bold text-xl">
-            <span class="text-amber-400">Legal</span>Advocate
-          </div>
+          <a routerLink="/" class="text-white font-bold text-xl">
+            <span class="text-amber-400">Advocate</span> Anju Singh
+          </a>
         </div>
       </div>
 
       <!-- Desktop Menu -->
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-2">
-          <a routerLink="home"
+          <a routerLink="/"
             routerLinkActive="router-link-active"
             [routerLinkActiveOptions]="{ exact: true }"
              class="text-gray-300 hover:text-amber-400 px-3 py-2 text-sm font-medium transition-colors duration-300 relative group"
@@ -32,7 +32,7 @@
             <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
           </a>
           
-          <a routerLink="about-us" 
+          <a routerLink="/about-us" 
              routerLinkActive="router-link-active"
              class="text-gray-300 hover:text-amber-400 px-3 py-2 text-sm font-medium transition-colors duration-300 relative group"
              (click)="closeMenu()">
@@ -40,7 +40,7 @@
             <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
           </a>
           
-          <a routerLink="practice-area" 
+          <a routerLink="/practice-area" 
              routerLinkActive="router-link-active"
              class="text-gray-300 hover:text-amber-400 px-3 py-2 text-sm font-medium transition-colors duration-300 relative group"
              (click)="closeMenu()">
@@ -48,7 +48,7 @@
             <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
           </a>
           
-          <a routerLink="services" 
+          <a routerLink="/services" 
              routerLinkActive="router-link-active"
              class="text-gray-300 hover:text-amber-400 px-3 py-2 text-sm font-medium transition-colors duration-300 relative group"
              (click)="closeMenu()">
@@ -56,7 +56,7 @@
             <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
           </a>
           
-          <a routerLink="clients" 
+          <a routerLink="/clients" 
              routerLinkActive="router-link-active"
              class="text-gray-300 hover:text-amber-400 px-3 py-2 text-sm font-medium transition-colors duration-300 relative group"
              (click)="closeMenu()">
@@ -64,7 +64,7 @@
             <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
           </a>
           
-          <a routerLink="contact-us" 
+          <a routerLink="/contact-us" 
              routerLinkActive="router-link-active"
              class="text-gray-300 hover:text-amber-400 px-3 py-2 text-sm font-medium transition-colors duration-300 relative group"
              (click)="closeMenu()">
@@ -90,7 +90,7 @@
   <!-- Mobile Menu Dropdown -->
   <div class="md:hidden" [class.hidden]="!isMenuOpen">
     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-900 border-t border-gray-700 animate-fadeIn">
-      <a routerLink="home" 
+      <a routerLink="/" 
          routerLinkActive="text-amber-400 bg-gray-800"
          [routerLinkActiveOptions]="{ exact: true }"
          class="text-white hover:text-amber-400 hover:bg-gray-800 block px-3 py-2 text-base font-medium transition-all duration-300 rounded-md"
@@ -98,35 +98,35 @@
         Home
       </a>
       
-      <a routerLink="about-us" 
+      <a routerLink="/about-us" 
          routerLinkActive="text-amber-400 bg-gray-800"
          class="text-gray-300 hover:text-amber-400 hover:bg-gray-800 block px-3 py-2 text-base font-medium transition-all duration-300 rounded-md"
          (click)="closeMenu()">
         About
       </a>
       
-      <a routerLink="practice-area" 
+      <a routerLink="/practice-area" 
          routerLinkActive="text-amber-400 bg-gray-800"
          class="text-gray-300 hover:text-amber-400 hover:bg-gray-800 block px-3 py-2 text-base font-medium transition-all duration-300 rounded-md"
          (click)="closeMenu()">
         Practice Area
       </a>
       
-      <a routerLink="services" 
+      <a routerLink="/services" 
          routerLinkActive="text-amber-400 bg-gray-800"
          class="text-gray-300 hover:text-amber-400 hover:bg-gray-800 block px-3 py-2 text-base font-medium transition-all duration-300 rounded-md"
          (click)="closeMenu()">
         Services
       </a>
       
-      <a routerLink="clients" 
+      <a routerLink="/clients" 
          routerLinkActive="text-amber-400 bg-gray-800"
          class="text-gray-300 hover:text-amber-400 hover:bg-gray-800 block px-3 py-2 text-base font-medium transition-all duration-300 rounded-md"
          (click)="closeMenu()">
         Clients
       </a>
       
-      <a routerLink="contact-us" 
+      <a routerLink="/contact-us" 
          routerLinkActive="text-amber-400 bg-gray-800"
          class="text-gray-300 hover:text-amber-400 hover:bg-gray-800 block px-3 py-2 text-base font-medium transition-all duration-300 rounded-md"
          (click)="closeMenu()">

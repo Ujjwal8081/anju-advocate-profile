@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailjsService } from '../../services/emailjs.service';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -18,6 +19,7 @@ export class ContactUsComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private emailjsService: EmailjsService,
+    private seoService: SeoService,
   ) {
     this.contactForm = this.fb.group({
       fullName: ['', [Validators.required, Validators.minLength(2)]],
@@ -32,7 +34,9 @@ export class ContactUsComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.seoService.setContactSEO();
+  }
 
   /**
    * Handle form submission and send email via EmailJS

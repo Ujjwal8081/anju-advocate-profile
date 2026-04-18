@@ -1,0 +1,80 @@
+<section *ngIf="pageData" class="service-detail-hero bg-gradient-to-br from-black via-gray-900 to-gray-800 py-20 text-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <p class="text-sm uppercase tracking-[0.25em] text-amber-400 mb-4">Service page</p>
+    <h1 class="text-4xl md:text-5xl font-bold leading-tight max-w-4xl">{{ pageData.heroTitle }}</h1>
+    <p class="text-lg text-gray-300 mt-6 max-w-3xl leading-relaxed">{{ pageData.heroDescription }}</p>
+    <div class="flex flex-col sm:flex-row gap-4 mt-8">
+      <a routerLink="/contact-us" class="bg-amber-500 text-black font-semibold px-6 py-3 rounded-lg text-center hover:bg-amber-400 transition-colors">Book consultation</a>
+      <a href="tel:+918318350027" class="border border-amber-400 text-amber-300 font-semibold px-6 py-3 rounded-lg text-center hover:bg-amber-400 hover:text-black transition-colors">Call +91 8318350027</a>
+    </div>
+  </div>
+</section>
+
+<section *ngIf="pageData" class="service-detail-body py-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[1.4fr_0.8fr] gap-10">
+    <article class="space-y-10">
+      <div class="service-content-block">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ pageData.introTitle }}</h2>
+        <p *ngFor="let paragraph of pageData.introParagraphs" class="text-gray-700 leading-8 mb-4">{{ paragraph }}</p>
+      </div>
+
+      <div class="service-content-block">
+        <h2 class="text-3xl font-bold text-gray-900 mb-5">What this service covers</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div *ngFor="let point of pageData.servicePoints" class="service-highlight-card rounded-xl px-5 py-4 text-gray-800 font-medium">
+            {{ point }}
+          </div>
+        </div>
+      </div>
+
+      <div class="service-content-block">
+        <h2 class="text-3xl font-bold text-gray-900 mb-5">Common situations</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div *ngFor="let situation of pageData.situations" class="service-neutral-card rounded-xl px-5 py-4 text-gray-700">
+            {{ situation }}
+          </div>
+        </div>
+      </div>
+
+      <div class="service-content-block">
+        <h2 class="text-3xl font-bold text-gray-900 mb-5">{{ pageData.processTitle }}</h2>
+        <div class="space-y-4">
+          <div *ngFor="let step of pageData.processSteps; let index = index" class="service-process-step flex gap-4 rounded-xl px-5 py-4">
+            <div class="h-10 w-10 rounded-full bg-gray-900 text-white flex items-center justify-center font-semibold shrink-0">{{ index + 1 }}</div>
+            <p class="text-gray-700 leading-7">{{ step }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-content-block">
+        <h2 class="text-3xl font-bold text-gray-900 mb-5">{{ pageData.faqTitle }}</h2>
+        <div class="space-y-4">
+          <div *ngFor="let faq of pageData.faqs" class="service-faq-card rounded-xl px-5 py-5">
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ faq.question }}</h3>
+            <p class="text-gray-700 leading-7">{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <aside class="space-y-6">
+      <div class="service-cta-card rounded-2xl text-white p-6">
+        <h2 class="text-2xl font-bold mb-3">Need legal help in Lucknow?</h2>
+        <p class="text-gray-300 leading-7 mb-5">Discuss your matter directly with Advocate Anju Singh for the right next step, documents to prepare and likely court process.</p>
+        <div class="space-y-3">
+          <a routerLink="/contact-us" class="block bg-amber-500 text-black text-center font-semibold px-5 py-3 rounded-lg hover:bg-amber-400 transition-colors">Request consultation</a>
+          <a href="mailto:advanjusingh89@gmail.com" class="block border border-gray-700 text-center font-semibold px-5 py-3 rounded-lg hover:border-amber-400 hover:text-amber-300 transition-colors">Email the office</a>
+        </div>
+      </div>
+
+      <div class="service-related-card rounded-2xl p-6">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Related pages</h2>
+        <nav class="space-y-3">
+          <a *ngFor="let link of pageData.relatedLinks" [routerLink]="link.path" class="block text-amber-700 font-medium hover:text-amber-900">
+            {{ link.label }}
+          </a>
+        </nav>
+      </div>
+    </aside>
+  </div>
+</section>

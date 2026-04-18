@@ -12,6 +12,7 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { HeaderComponent } from './pages/header/header.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { PracticeAreaComponent } from './practice-area/practice-area.component';
+import { ServiceDetailComponent } from './pages/service-detail/service-detail.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PracticeAreaComponent } from './practice-area/practice-area.component';
     ContactUsComponent,
     HeaderComponent,
     FooterComponent,
-    PracticeAreaComponent
+    PracticeAreaComponent,
+    ServiceDetailComponent
   ],
   imports: [
     BrowserModule,

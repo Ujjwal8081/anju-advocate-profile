@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.css']
 })
-export class ClientsComponent {
+export class ClientsComponent implements OnInit {
+  constructor(private seoService: SeoService) {}
 
   clientCategories = [
     {
@@ -116,5 +118,9 @@ export class ClientsComponent {
       location: 'Bangalore, Karnataka'
     }
   ];
+
+  ngOnInit(): void {
+    this.seoService.setClientsSEO();
+  }
 
 }

@@ -5,51 +5,68 @@
   
   <url>
     <loc>https://advanjusingh.com/</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <url>
-    <loc>https://advanjusingh.com/home</loc>
-    <lastmod>2026-01-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
   <url>
     <loc>https://advanjusingh.com/about-us</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
     <loc>https://advanjusingh.com/services</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
   <url>
     <loc>https://advanjusingh.com/practice-area</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
   <url>
     <loc>https://advanjusingh.com/clients</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
   <url>
     <loc>https://advanjusingh.com/contact-us</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-04-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+  <url>
+    <loc>https://advanjusingh.com/services/criminal-lawyer-lucknow</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://advanjusingh.com/services/civil-lawyer-lucknow</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://advanjusingh.com/services/family-lawyer-lucknow</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://advanjusingh.com/services/property-lawyer-lucknow</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://advanjusingh.com/services/corporate-lawyer-lucknow</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>

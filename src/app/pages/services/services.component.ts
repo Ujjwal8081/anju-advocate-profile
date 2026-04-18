@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.css']
 })
-export class ServicesComponent {
+export class ServicesComponent implements OnInit {
+  constructor(private seoService: SeoService) {}
 
   services = [
     {
@@ -129,6 +131,38 @@ export class ServicesComponent {
     { value: '24/7', label: 'Emergency Support' },
     { value: '500+', label: 'Satisfied Clients' }
   ];
+
+  landingPages = [
+    {
+      title: 'Criminal Lawyer in Lucknow',
+      description: 'Support for bail applications, criminal defence, revisions and appeal matters.',
+      path: '/services/criminal-lawyer-lucknow'
+    },
+    {
+      title: 'Civil Lawyer in Lucknow',
+      description: 'Representation in civil disputes, injunction applications and recovery proceedings.',
+      path: '/services/civil-lawyer-lucknow'
+    },
+    {
+      title: 'Family Lawyer in Lucknow',
+      description: 'Guidance for divorce, custody, maintenance and related family court matters.',
+      path: '/services/family-lawyer-lucknow'
+    },
+    {
+      title: 'Property Lawyer in Lucknow',
+      description: 'Assistance with title review, transactions, ownership disputes and documentation.',
+      path: '/services/property-lawyer-lucknow'
+    },
+    {
+      title: 'Corporate Lawyer in Lucknow',
+      description: 'Business legal support for contracts, compliance requirements and advisory work.',
+      path: '/services/corporate-lawyer-lucknow'
+    }
+  ];
+
+  ngOnInit(): void {
+    this.seoService.setServicesSEO();
+  }
 
   scheduleConsultation() {
     console.log('Consultation scheduling requested');

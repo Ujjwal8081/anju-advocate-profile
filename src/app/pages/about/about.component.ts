@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit {
+  constructor(private seoService: SeoService) {}
 
   practiceAreas = [
     {
@@ -48,6 +50,10 @@ export class AboutComponent {
       description: 'Complete transparency in proceedings, ethical conduct, and honest communication throughout legal processes.'
     }
   ];
+
+  ngOnInit(): void {
+    this.seoService.setAboutSEO();
+  }
 
   bookConsultation() {
     // Placeholder for booking functionality

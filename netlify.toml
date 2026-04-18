@@ -17,11 +17,10 @@
   to = "https://advanjusingh.com/:splat"
   status = 301
 
-# Optional: Redirect www to non-www (choose one approach)
-# [[redirects]]
-#   from = "https://www.advanjusingh.com/*"
-#   to = "https://advanjusingh.com/:splat"
-#   status = 301
+[[redirects]]
+  from = "/home"
+  to = "/"
+  status = 301
 
 # SPA routing - MUST come after redirects
 [[redirects]]

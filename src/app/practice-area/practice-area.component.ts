@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-practice-area',
   templateUrl: './practice-area.component.html',
   styleUrls: ['./practice-area.component.css']
 })
-export class PracticeAreaComponent {
+export class PracticeAreaComponent implements OnInit {
+  constructor(private seoService: SeoService) {}
 
   practiceAreas = [
     {
@@ -111,6 +113,10 @@ export class PracticeAreaComponent {
     { value: '50+', label: 'Corporate Clients' },
     { value: '10+', label: 'Years Experience' }
   ];
+
+  ngOnInit(): void {
+    this.seoService.setPracticeAreaSEO();
+  }
 
   bookConsultation() {
     console.log('Consultation booking requested');

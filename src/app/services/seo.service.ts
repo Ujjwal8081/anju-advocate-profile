@@ -2,10 +2,26 @@ import { Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 
+export interface SeoConfig {
+  title: string;
+  description: string;
+  keywords?: string;
+  path?: string;
+  type?: string;
+  image?: string;
+  noindex?: boolean;
+  schemas?: unknown[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class SeoService {
+  private readonly siteName = 'Advocate Anju Singh';
+  private readonly baseUrl = 'https://advanjusingh.com';
+  private readonly defaultImage = `${this.baseUrl}/assets/images/profile-image.jpg`;
+  private readonly canonicalSelector = 'link[rel="canonical"][data-managed="true"]';
+  private readonly structuredDataSelector = 'script[data-seo-schema="true"]';
 
   constructor(
     private meta: Meta,
@@ -17,6 +33,27 @@ export class SeoService {
         window.scrollTo(0, 0);
       }
     });
+  }
+
+  applySeo(config: SeoConfig) {
+    const canonicalUrl = this.getAbsoluteUrl(config.path);
+    const image = config.image || this.defaultImage;
+
+    this.setPageTitle(config.title);
+    this.setMetaDescription(config.description);
+    this.setKeywords(config.keywords || '');
+    this.setCanonicalURL(canonicalUrl);
+
+    this.meta.updateTag({ property: 'og:type', content: config.type || 'website' });
+    this.meta.updateTag({ property: 'og:site_name', content: this.siteName });
+    this.meta.updateTag({ property: 'og:url', content: canonicalUrl });
+    this.meta.updateTag({ name: 'twitter:url', content: canonicalUrl });
+    this.meta.updateTag({ property: 'og:image', content: image });
+    this.meta.updateTag({ name: 'twitter:image', content: image });
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.meta.updateTag({ name: 'robots', content: config.noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1' });
+
+    this.replaceStructuredData(config.schemas || []);
   }
 
   setPageTitle(title: string) {
@@ -33,10 +70,17 @@ export class SeoService {
   }
 
   setCanonicalURL(url: string = '') {
-    const canonicalLink = document.createElement('link');
-    canonicalLink.rel = 'canonical';
-    canonicalLink.href = url || window.location.href;
-    document.head.appendChild(canonicalLink);
+    const canonicalHref = url || window.location.href;
+    let canonicalLink = document.head.querySelector(this.canonicalSelector) as HTMLLinkElement | null;
+
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.rel = 'canonical';
+      canonicalLink.setAttribute('data-managed', 'true');
+      document.head.appendChild(canonicalLink);
+    }
+
+    canonicalLink.href = canonicalHref;
   }
 
   updateOGImage(imageUrl: string) {
@@ -52,152 +96,245 @@ export class SeoService {
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.text = JSON.stringify(data);
+    script.setAttribute('data-seo-schema', 'true');
     document.head.appendChild(script);
+  }
+
+  replaceStructuredData(schemas: unknown[]) {
+    document.head.querySelectorAll(this.structuredDataSelector).forEach((node) => node.remove());
+    schemas.forEach((schema) => this.setStructuredData(schema));
+  }
+
+  getAbsoluteUrl(path = '') {
+    if (!path || path === '/') {
+      return this.baseUrl;
+    }
+
+    if (path.startsWith('http')) {
+      return path;
+    }
+
+    return `${this.baseUrl}${path.startsWith('/') ? path : `/${path}`}`;
+  }
+
+  getOrganizationSchema() {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'LegalService',
+      name: this.siteName,
+      url: this.baseUrl,
+      image: this.defaultImage,
+      telephone: '+91-8318350027',
+      email: 'advanjusingh89@gmail.com',
+      areaServed: [
+        {
+          '@type': 'City',
+          name: 'Lucknow'
+        },
+        {
+          '@type': 'State',
+          name: 'Uttar Pradesh'
+        },
+        {
+          '@type': 'Country',
+          name: 'India'
+        }
+      ],
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Chamber C-508, Kamta High Court',
+        addressLocality: 'Lucknow',
+        addressRegion: 'Uttar Pradesh',
+        postalCode: '226001',
+        addressCountry: 'IN'
+      }
+    };
+  }
+
+  getPersonSchema() {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Advocate Anju Singh',
+      jobTitle: 'Advocate and Legal Consultant',
+      image: this.defaultImage,
+      worksFor: {
+        '@type': 'LegalService',
+        name: this.siteName
+      },
+      url: this.baseUrl,
+      knowsAbout: [
+        'Criminal Law',
+        'Civil Litigation',
+        'Family Law',
+        'Corporate Law',
+        'Property Law'
+      ]
+    };
+  }
+
+  getBreadcrumbSchema(breadcrumbs: Array<{ name: string; url: string }>) {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumbs.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        item: this.getAbsoluteUrl(item.url)
+      }))
+    };
+  }
+
+  getFaqSchema(faqs: Array<{ question: string; answer: string }>) {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer
+        }
+      }))
+    };
+  }
+
+  getServiceSchema(service: {
+    name: string;
+    description: string;
+    path: string;
+    areaServed?: string[];
+  }) {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      serviceType: service.name,
+      name: service.name,
+      description: service.description,
+      url: this.getAbsoluteUrl(service.path),
+      provider: {
+        '@type': 'LegalService',
+        name: this.siteName,
+        url: this.baseUrl
+      },
+      areaServed: (service.areaServed || ['Lucknow', 'Uttar Pradesh', 'India']).map((area) => ({
+        '@type': 'Place',
+        name: area
+      }))
+    };
   }
 
   // Home Page SEO
   setHomeSEO() {
-    this.setPageTitle('Expert Legal Services | Advocate Portfolio - Corporate & Criminal Law');
-    this.setMetaDescription('Professional legal services specializing in corporate law, criminal defense, and civil litigation. 150+ satisfied clients, 500+ successful cases. Get free consultation today.');
-    this.setKeywords('advocate, lawyer, legal services, corporate law, criminal law, civil litigation, legal consultation');
-    
-    const homeSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'LocalBusiness',
-      'name': 'Advocate Anju Singh',
-      'description': 'Premium legal services and advocacy',
-      'image': 'https://advanjusingh.com/assets/images/profile-image.jpg',
-      'telephone': '+91-8318350027',
-      'email': 'advanjusingh89@gmail.com',
-      'url': 'https://advanjusingh.com',
-      'priceRange': '$$',
-      'areaServed': 'United States'
-    };
-    this.setStructuredData(homeSchema);
+    const faqs = [
+      {
+        question: 'What types of legal matters does Advocate Anju Singh handle in Lucknow?',
+        answer: 'Advocate Anju Singh handles criminal defense, civil litigation, family disputes, corporate advisory, property disputes, and legal consultation matters in Lucknow and Uttar Pradesh.'
+      },
+      {
+        question: 'Can I book a consultation for bail, property, or family disputes?',
+        answer: 'Yes. The firm accepts consultation requests for bail matters, property disputes, family law cases, civil recovery, and corporate legal issues.'
+      }
+    ];
+
+    this.applySeo({
+      title: 'Advocate in Lucknow for Criminal, Civil, Family and Corporate Matters | Advocate Anju Singh',
+      description: 'Advocate in Lucknow offering criminal defense, civil litigation, family law, property dispute and corporate legal services. Book a consultation with Advocate Anju Singh.',
+      keywords: 'advocate in Lucknow, lawyer in Lucknow, criminal lawyer in Lucknow, civil lawyer in Lucknow, family lawyer in Lucknow, property lawyer in Lucknow, corporate lawyer in Lucknow',
+      path: '/',
+      schemas: [
+        this.getOrganizationSchema(),
+        this.getPersonSchema(),
+        this.getFaqSchema(faqs)
+      ]
+    });
   }
 
   // About Page SEO
   setAboutSEO() {
-    this.setPageTitle('About Us | Expert Legal Professionals | Advocate Portfolio');
-    this.setMetaDescription('Learn about our team of experienced legal professionals with 10+ years of expertise. Dedicated to delivering justice and excellence in legal services.');
-    this.setKeywords('about advocate portfolio, legal team, experienced lawyers, legal professionals, law firm');
-    
-    const aboutSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'AboutPage',
-      'name': 'About Advocate Anju Singh',
-      'description': 'Meet our team of expert legal professionals',
-      'url': 'https://advanjusingh.com/about-us'
-    };
-    this.setStructuredData(aboutSchema);
+    this.applySeo({
+      title: 'About Advocate Anju Singh | Lawyer in Lucknow',
+      description: 'Learn about Advocate Anju Singh, a Lucknow-based legal practitioner with experience in criminal, civil, family, property and corporate matters.',
+      keywords: 'about Advocate Anju Singh, lawyer in Lucknow, advocate profile, legal consultant Lucknow',
+      path: '/about-us',
+      schemas: [
+        this.getOrganizationSchema(),
+        this.getPersonSchema(),
+        this.getBreadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'About Us', url: '/about-us' }
+        ])
+      ]
+    });
   }
 
   // Services Page SEO
   setServicesSEO() {
-    this.setPageTitle('Legal Services | Criminal, Corporate & Civil Law | Advocate Portfolio');
-    this.setMetaDescription('Comprehensive legal services including corporate law, criminal defense, civil litigation, family law, and more. Proven expertise with 500+ successful cases.');
-    this.setKeywords('legal services, corporate law, criminal law, civil litigation, family law, legal consultation, attorney services');
-    
-    const servicesSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      'name': 'Legal Services',
-      'provider': {
-        '@type': 'LocalBusiness',
-        'name': 'Advocate Portfolio'
-      },
-      'areaServed': 'United States',
-      'availableLanguage': 'en'
-    };
-    this.setStructuredData(servicesSchema);
+    this.applySeo({
+      title: 'Legal Services in Lucknow | Criminal, Civil, Family, Property and Corporate Lawyer',
+      description: 'Explore legal services in Lucknow for criminal defense, civil litigation, family disputes, property matters, tribunal cases and corporate advisory.',
+      keywords: 'legal services in Lucknow, criminal lawyer services, civil litigation lawyer, family lawyer, property dispute lawyer, corporate lawyer Lucknow',
+      path: '/services',
+      schemas: [
+        this.getOrganizationSchema(),
+        this.getBreadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Services', url: '/services' }
+        ])
+      ]
+    });
   }
 
   // Clients Page SEO
   setClientsSEO() {
-    this.setPageTitle('Our Clients & Testimonials | Advocate Anju Singh');
-    this.setMetaDescription('See what 150+ satisfied clients say about our legal services. Real testimonials and case results showcasing our expertise and dedication.');
-    this.setKeywords('client testimonials, legal reviews, case results, client feedback, advocate portfolio');
-    
-    const clientsSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      'itemListElement': [
-        {
-          '@type': 'Review',
-          'reviewRating': { '@type': 'Rating', 'ratingValue': '5' },
-          'author': { '@type': 'Person', 'name': 'Client' },
-          'reviewBody': 'Excellent legal services'
-        }
+    this.applySeo({
+      title: 'Client Testimonials and Legal Experience | Advocate Anju Singh',
+      description: 'Read client testimonials and case experience highlights for Advocate Anju Singh across criminal, civil, family and business legal matters.',
+      keywords: 'advocate reviews Lucknow, lawyer testimonials, legal case experience, client feedback advocate',
+      path: '/clients',
+      schemas: [
+        this.getOrganizationSchema(),
+        this.getBreadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Clients', url: '/clients' }
+        ])
       ]
-    };
-    this.setStructuredData(clientsSchema);
+    });
   }
 
   // Contact Page SEO
   setContactSEO() {
-    this.setPageTitle('Contact Us | Get Free Legal Consultation | Advocate Anju Singh');
-    this.setMetaDescription('Get in touch with our legal team for a free consultation. Contact us via phone, email, or contact form. Available 24/7 for your legal needs.');
-    this.setKeywords('contact us, legal consultation, advocate portfolio, phone number, email address, legal help');
-    
-    const contactSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'ContactPage',
-      'name': 'Contact Advocate Anju Singh',
-      'url': 'https://advanjusingh.com/contact-us',
-      'contactPoint': {
-        '@type': 'ContactPoint',
-        'contactType': 'Customer Service',
-        'telephone': '+91-8318350027',
-        'email': 'advanjusingh89@gmail.com'
-      }
-    };
-    this.setStructuredData(contactSchema);
+    this.applySeo({
+      title: 'Contact Advocate Anju Singh | Legal Consultation in Lucknow',
+      description: 'Contact Advocate Anju Singh in Lucknow for legal consultation on criminal, civil, family, property and corporate matters.',
+      keywords: 'contact lawyer in Lucknow, legal consultation Lucknow, advocate phone number, advocate contact form',
+      path: '/contact-us',
+      schemas: [
+        this.getOrganizationSchema(),
+        this.getBreadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Contact Us', url: '/contact-us' }
+        ])
+      ]
+    });
   }
 
   // Practice Area Page SEO
   setPracticeAreaSEO() {
-    this.setPageTitle('Practice Areas | Specialized Legal Services | Advocate Anju Singh');
-    this.setMetaDescription('Explore our specialized practice areas: corporate law, criminal defense, civil litigation, family law, and tax compliance. Expert legal solutions.');
-    this.setKeywords('practice areas, corporate law, criminal law, civil litigation, family law, legal specializations');
-    
-    const practiceSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'CreativeWork',
-      'name': 'Practice Areas',
-      'description': 'Specialized legal practice areas'
-    };
-    this.setStructuredData(practiceSchema);
-  }
-
-  // Breadcrumb Schema
-  setBreadcrumb(breadcrumbs: Array<{ name: string; url: string }>) {
-    const breadcrumbSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      'itemListElement': breadcrumbs.map((item, index) => ({
-        '@type': 'ListItem',
-        'position': index + 1,
-        'name': item.name,
-        'item': item.url
-      }))
-    };
-    this.setStructuredData(breadcrumbSchema);
-  }
-
-  // FAQ Schema
-  setFAQSchema(faqs: Array<{ question: string; answer: string }>) {
-    const faqSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      'mainEntity': faqs.map(faq => ({
-        '@type': 'Question',
-        'name': faq.question,
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': faq.answer
-        }
-      }))
-    };
-    this.setStructuredData(faqSchema);
+    this.applySeo({
+      title: 'Practice Areas | Criminal, Civil, Family, Property and Corporate Lawyer in Lucknow',
+      description: 'Browse practice areas handled by Advocate Anju Singh including criminal cases, civil disputes, family law, property matters and corporate advisory work.',
+      keywords: 'practice areas advocate, criminal lawyer in Lucknow, civil lawyer in Lucknow, family law advocate, property dispute lawyer',
+      path: '/practice-area',
+      schemas: [
+        this.getOrganizationSchema(),
+        this.getBreadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Practice Areas', url: '/practice-area' }
+        ])
+      ]
+    });
   }
 }
